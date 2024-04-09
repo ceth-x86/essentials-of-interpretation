@@ -1,4 +1,5 @@
 const assert = require('assert');
+const testUtil = require('./test_util');
 
 class Environment {
     constructor(record = {}, parent = null) {
@@ -205,6 +206,13 @@ assert.strictEqual(eva.eval(
             'result'
     ]), 10);
 
+
+testUtil.test(eva, `
+    (begin
+        (var x 10)
+        (var y 20)
+        (+ (* x 10) y)
+    )`, 120);
 
 console.log('All tests passed');
 
